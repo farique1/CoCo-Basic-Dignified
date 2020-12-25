@@ -8,8 +8,8 @@ Dignified Basic can be written **without line numbers**, can be **indented** usi
 There is a syntax highlight, build system and comment setting available for **Sublime Text 3** working with the **CoCo Basic** and **CoCo Basic Dignified** rules to help improve the overall experience.  
   
 CoCo Basic Dignified  
-:-------------------------:|  
-[![CoCo Badig in action](TitleVT.png)](https://youtu.be/aQfmmiJ9mzo)  
+:-------------------------:  
+[![CoCo Badig in action](TitleVT.jpg)](https://youtu.be/aQfmmiJ9mzo)  
 
 >Please, be aware that **CBD** and its tools are by no mean finished products and are sort of expected to misbehave.  
   
