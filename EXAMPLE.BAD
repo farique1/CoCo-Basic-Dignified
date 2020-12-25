@@ -1,0 +1,68 @@
+## BB:arguments=-gs 1,-tg k
+
+' This program is just a test, it has no real purpose
+declare mode:m, posX:x, posY:y
+define [pause] [if inkey$="" then {@}]
+define [enter][a$=chr$(13)], [space][a$=" "]
+define [joyBtn] [peek(&hff00)=[]]
+keep #2
+## use keep #1 to no tansparency (faster)
+
+cls
+print "USE joystick TO MOVE THE CIRCLE"
+print "JOYSTICK button TO STAMP"
+print "space TO SEE THE TIMING"
+print "enter TO RESET"
+print "any key TO CONTINUE"
+[pause]
+
+{start}
+	cls
+	pclear 4
+	print@ 32*7+8,"R E N D E R I N G" 
+	~size=30:~page=1
+	dim c(size,size):dim b(size,size)
+	pmode page,1:pcls
+	color 0:circle(size/2,size/2),size/2:get (0,0)-(size,size),c,g
+	pcls 1
+	for f=1 to 10 step 2:
+		color rnd(2)+1:
+		line(f*25,0)-(abs(f*25-250),191),pset:
+		line(0,f*19)-(255,abs(f*19-191)),pset:
+	next
+	#2 get(128,10)-(128+size,10+size),b,g
+	#1 get(128,10)-(128+size,10+size),b
+	pcopy 1 to 3:pcopy 2 to 4
+	posX=128:posY=10:mode=1
+	cls
+	loop{
+		a$=inkey$
+		if [enter] then {start}
+
+		timer = 0
+		pmode page,mode
+		if  [joyBtn]255 or [joyBtn]127 then _
+			#2 put(posX,posY)-(posX+size,posY+size),b,pset ## erase
+			#1 put(posX,posY)-(posX+size,posY+size),b ## erase
+
+		posX=joystk(0)*4:posY=joystk(1)*3
+		#2 get(posX,posY)-(posX+size,posY+size),b,g ## get BG
+		#2 put(posX,posY)-(posX+size,posY+size),c,or ## draw
+		#1 get(posX,posY)-(posX+size,posY+size),b ## get BG
+		#1 put(posX,posY)-(posX+size,posY+size),c,pset ## draw
+
+		pcopy mode to(3+1)-mode:pcopy mode+1 to((3+1)-mode)+1
+		screen 1,1
+		mode=(3+1)-mode
+
+		if [space] then .showTime(timer)
+	}
+
+	func .showTime(t)
+		print "THE FRAME TIME WAS:"
+		print t/60; "SECONDS"
+		print
+		print "PRESS ANY KEY TO CONTINUE"
+		print
+		[pause]
+	return
