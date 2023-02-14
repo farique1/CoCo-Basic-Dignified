@@ -1,3 +1,8 @@
+# ⛔️ DEPRECATED
+### This repo is part of a series of tools that were integrated into the [Basic Dignified Suite](https://github.com/farique1/basic-dignified). The newer versions are available there. This version is out of date and will no longer be supported here.    
+### This repo now exists for archival purpose only.   
+----------------------------
+
 # CoCo Basic Dignified  
 **Beta Version**  
   
